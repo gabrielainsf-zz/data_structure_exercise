@@ -164,6 +164,11 @@ def all_students_tuple_list(filename):
         house = new_line[2]
         advisor = new_line[3]
         cohort = new_line[4].rstrip()
+        # if cohort != "I" and cohort != "G":
+        if house != "":
+            student = (name, house, advisor, cohort)
+            student_list.append(student)
+
 
     return student_list
 
@@ -189,8 +194,14 @@ def find_cohort_by_student_name(student_list):
     """
 
     # Code goes here
+    name = input("Who are you looking for? ")
+    student_list = all_students_tuple_list()
 
-    return "Student not found."
+    for line in student_list:
+        if name in line:
+            return "{} was in the {} cohort.".format(name, cohort)
+        else:
+            return "Student not found."
 
 
 ##########################################################################################
@@ -250,7 +261,7 @@ def find_house_members_by_student_name(student_list):
 #############################################################################
 # Here is some useful code to run these functions without doctests!
 
-# find_cohort_by_student_name(all_students_data)
+find_cohort_by_student_name(all_students_data)
 # find_house_members_by_student_name(all_students_data)
 
 
